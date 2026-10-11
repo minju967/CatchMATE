@@ -1,0 +1,45 @@
+{
+  "name": "f3-match",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "tsx scripts/seed.ts",
+    "load-csv": "tsx --env-file=.env.local scripts/load-csv-to-mysql.ts",
+    "check-db": "tsx --env-file=.env.local scripts/check-db.ts",
+    "audit": "tsx --env-file=.env.local scripts/audit.ts",
+    "build-persona": "tsx scripts/build-persona-data.ts",
+    "verify": "tsx scripts/verify-personas.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "better-sqlite3": "^13.0.3",
+    "mysql2": "^3.24.5",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.4",
+    "seedrandom": "^3.0.5",
+    "zod": "^3.25.76",
+    "zustand": "^4.5.7"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@types/seedrandom": "^3.0.8",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}
