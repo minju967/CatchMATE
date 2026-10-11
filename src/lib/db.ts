@@ -86,7 +86,7 @@ let loading: Promise<Loaded> | null = null;
 async function fetchRows(): Promise<RawRow[]> {
   const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, DB_TABLE = 'customers_real' } = process.env;
   if (!DB_HOST || !DB_USER || !DB_NAME || !/^[A-Za-z0-9_]+$/.test(DB_TABLE)) throw new DbNotReadyError();
-  const conn = await mysql.createConnection({ host: DB_HOST, port: Number(DB_PORT) || 3306, user: DB_USER, password: DB_PASSWORD, database: DB_NAME, charset: 'utf8mb4', connectTimeout: 5000 });
+  const conn = await mysql.createConnection({ host: DB_HOST, port: Number(DB_PORT) || 3306, user: DB_USER, password: DB_PASSWORD, database: DB_NAME, charset: 'utf8mb4', ...(process.env.DB_SSL === 'true' ? { ssl: { minVersion: 'TLSv1.2', rejectUnauthorized: true } } : {}), connectTimeout: 5000 });
   try {
     const [rows] = await conn.query(`SELECT * FROM \`${DB_TABLE}\` ORDER BY customer_id`);
     return rows as RawRow[];

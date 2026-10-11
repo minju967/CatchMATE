@@ -33,6 +33,7 @@ npm run dev      # http://localhost:3000
 | 변수 | 기본값 | 설명 |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | 없음 | 없으면 추천 이유를 규칙 기반 문구로 만듭니다. 앱은 그대로 동작합니다. |
+| `DB_SSL` | `false` | `true` 면 MySQL 접속에 TLS 를 씁니다. TiDB Cloud 처럼 TLS 를 요구하는 DB 에 필요합니다. |
 | `LLM_MODEL` | `claude-sonnet-5-5` | 추천 이유 생성 모델 |
 
 LLM 호출이 실패·거절되거나 15초를 넘기면, 또는 JSON 파싱이 두 번 실패하면 폴백 문구가 나갑니다. 응답의 `source` 가 `llm` / `fallback` 중 무엇인지 알려줍니다.

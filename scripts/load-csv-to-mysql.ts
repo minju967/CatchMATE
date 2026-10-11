@@ -60,7 +60,7 @@ if (DRY) {
 async function main() {
   const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
   if (!DB_HOST || !DB_USER || !DB_NAME) throw new Error('.env.local 에 DB_HOST / DB_USER / DB_PASSWORD / DB_NAME 을 채우세요.');
-  const conn = await mysql.createConnection({ host: DB_HOST, port: Number(DB_PORT) || 3306, user: DB_USER, password: DB_PASSWORD, database: DB_NAME, charset: 'utf8mb4' });
+  const conn = await mysql.createConnection({ host: DB_HOST, port: Number(DB_PORT) || 3306, user: DB_USER, password: DB_PASSWORD, database: DB_NAME, charset: 'utf8mb4', ...(process.env.DB_SSL === 'true' ? { ssl: { minVersion: 'TLSv1.2', rejectUnauthorized: true } } : {}) });
   try {
     const [exists] = await conn.query('SELECT 1 FROM information_schema.tables WHERE table_schema = ? AND table_name = ?', [DB_NAME, TABLE]);
     if ((exists as unknown[]).length) {
